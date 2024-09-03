@@ -19,13 +19,13 @@ try:
     boundList = [] # List to store all boundary coordinates
     
     for line in text:   # Isolate node bounds, add to list
-        copy = line.split(' ')
+        copy = line.split('<')
         for i in copy:
-            if i.startswith('bounds='):
+            if "/>" in i and "bounds=" in i:
                 boundList.append(i)
 
     for j in boundList: # For every coordinate, format for parsing
-        j = j[7:]
+        j = j[j.find("bounds=")+7:]
         coord = j.split('][')
         
         coord[0] = coord[0][2:]
